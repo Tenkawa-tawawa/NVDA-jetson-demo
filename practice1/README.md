@@ -19,16 +19,12 @@
   gcc --version
   g++ --version
   ```
-4. 檢查函式庫安裝路徑
-  * Eigen
-    ```
-    ls /usr/include/eigen3
-    ```
-  * OpenBLAS
-    ```
-    ls /usr/lib/aarch64-linux-gnu | grep openblas
-    ```
-5. 執行效能監測工具
+4. 檢查數學函式庫的安裝路徑
+  ```bash
+  ls /usr/include/eigen3     # Eigen
+  ls /usr/lib/aarch64-linux-gnu | grep openblas       # OpenBLAS
+  ```
+5. 檢查效能監測工具
 ```
 sudo tegrastats
 ```
