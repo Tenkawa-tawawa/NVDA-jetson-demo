@@ -21,8 +21,8 @@
   ```
 4. 檢查數學函式庫的安裝路徑
   ```bash
-  ls /usr/include/eigen3     # Eigen
-  ls /usr/lib/aarch64-linux-gnu | grep openblas       # OpenBLAS
+  ls /usr/include/eigen3                           # Eigen
+  ls /usr/lib/aarch64-linux-gnu | grep openblas    # OpenBLAS
   ```
 5. 檢查效能監測工具
 ```
@@ -31,3 +31,17 @@ sudo tegrastats
 成功看到 CPU/GPU/記憶體的即時狀況後，即可按 `Ctrl+C` 結束監測。
 
 ## 執行範例
+
+編譯指令（JetPack 6.2 預設路徑）：
+```bash
+g++ <你的檔名>.cpp -o run_demo -I/usr/include/eigen3 -lopenblas
+```
+執行程式：
+
+```bash
+./run_demo
+```
+效能監測（另開終端）：
+```bash
+sudo tegrastats
+```
