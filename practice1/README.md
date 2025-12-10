@@ -34,13 +34,12 @@ sudo tegrastats
 
 編譯指令（JetPack 6.2 預設路徑）：
 ```bash
-g++ <source_file>.cpp -o <output_binary> -I<eigen_include_path> -L<openblas_lib_path> -lopenblas
+g++ <source_file>.cpp -o <output_binary> -I <eigen_include_path> -L <openblas_lib_path> -lopenblas
 ```
-* <source_file>.cpp：你的程式碼檔案。
-* <output_binary>：編譯後的執行檔名稱。
-* -I<eigen_include_path>：Eigen 的標頭檔路徑，例如 /usr/include/eigen3。
-* -L<openblas_lib_path>：OpenBLAS 的函式庫路徑，例如 /usr/lib 或 /usr/lib/aarch64-linux-gnu。
-* -lopenblas：連結 OpenBLAS 函式庫。
+* `<source_file>.cpp：你的程式碼檔案。
+* `<output_binary>：編譯後的執行檔名稱。
+* `<eigen_include_path>：Eigen 的標頭檔路徑。
+* `<openblas_lib_path>：OpenBLAS 的函式庫路徑。
 
 執行程式：
 ```bash
