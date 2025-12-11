@@ -41,3 +41,56 @@ sudo tegrastats
 ```
 
 ## 進階練習題
+
+1. 請使用 `Eigen`  實作 100x100 矩陣的「加法」與「乘法」運算（C = A + B, C = A × B），並用 `tegrastats` 測量 Jetson Orin 的 CPU、記憶體使用量。
+
+2. 請使用 `OpenBLAS`  實作 100x100 矩陣的「加法」與「乘法」運算（C = A + B, C = A × B），並用 `tegrastats` 測量 Jetson Orin 的 CPU、記憶體使用量。
+
+3. 延續第二題，，請加入 `openblas_set_num_threads(2)`;，分別比較單執行緒與多執行緒的執行時間插一，並觀察 CPU 的使用量。
+
+## 解答
+### eigen_3x3.cpp
+```
+#include <iostream>
+#include <Eigen/Dense>
+using namespace std;
+using namespace Eigen;
+
+int main() {
+    Matrix3d A, B, C;
+    A << 1,2,3,4,5,6,7,8,9;
+    B << 9,8,7,6,5,4,3,2,1;
+    C = A + B;
+    cout << "A + B =\n" << C << endl;
+    C = A * B;
+    cout << "A * B =\n" << C << endl;
+    return 0;
+}
+```
+### openblas_1000.cpp
+```
+#include <iostream>
+#include <cblas.h>
+#include <vector>
+using namespace std;
+
+int main() {
+    int N = 1000;
+    vector<double> A(N*N, 1.0), B(N*N, 2.0), C(N*N, 0.0);
+
+    // 矩陣加法
+    for(int i=0; i<N*N; ++i) C[i] = A[i] + B[i];
+
+    // 矩陣乘法
+    cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+                N, N, N, 1.0, A.data(), N, B.data(), N, 0.0, C.data(), N);
+
+    cout << "OpenBLAS 運算完成" << endl;
+    return 0;
+}
+```
+如需多執行緒，請在 main 開頭加上：
+```
+#include <openblas_config.h>
+openblas_set_num_threads(2);
+```
