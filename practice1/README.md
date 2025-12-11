@@ -4,14 +4,21 @@
 
 ## 準備環境
 
-本教材以 Jetson Orin + JetPack 6.2 為例，指令可在大多數 Ubuntu 系統上沿用。若遇到安裝或路徑問題，請依你的環境調整。
+本教材以 Jetson Orin + JetPack 6.2 為例，如果你的系統尚未安裝 **Ubuntu with JetPack**，請先依照 [官方教學](https://developer.nvidia.com/embedded/jetpack-sdk-62)完成安裝。
 
-安裝指令：
+1. 安裝開發工具與數學運算函式庫
   ```bash
   sudo apt update
   sudo apt install -y build-essential libeigen3-dev libopenblas-dev
   ```
-（如已安裝可略過）
+2. 確認函式庫的安裝路徑，方便後續編譯程式碼
+  ```bash
+  # 查找 Eigen 標頭檔路徑（通常為 /usr/include/eigen3）
+  find /usr/include -type d -name "eigen3"
+
+  # 查找 OpenBLAS 函式庫路徑（通常為 /usr/lib/aarch64-linux-gnu）
+  find /usr/lib -name "libopenblas.so*"
+  ```
 
 ## 執行範例
 
