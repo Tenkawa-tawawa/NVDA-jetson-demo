@@ -48,7 +48,7 @@ sudo tegrastats
 
 3. 延續第二題，，請加入 `openblas_set_num_threads(2)`;，分別比較單執行緒與多執行緒的執行時間插一，並觀察 CPU 的使用量。
 
-## Eigen, OpenBLAS範例解答
+## Eigen, OpenBLAS 範例解答
 ### eigen_3x3.cpp
 ```cpp
 #include <iostream>
