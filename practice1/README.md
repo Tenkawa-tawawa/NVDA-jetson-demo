@@ -35,7 +35,7 @@ g++ <source_file>.cpp -o <output_binary> -I <eigen_include_path> -L <openblas_li
 ```bash
 ./<output_binary>
 ```
-3. 開啟效能監測（可於另一終端執行）：
+3. 開啟效能監測（可於另一個命令列執行）：
 ```bash
 sudo tegrastats
 ```
