@@ -44,7 +44,7 @@ sudo tegrastats
 
 1. 請使用 `Eigen`  實作 100x100 矩陣的「加法」與「乘法」運算（C = A + B, C = A × B），並用 `tegrastats` 測量 Jetson Orin 的 CPU、記憶體使用量。
 
-2. 請使用 `OpenBLAS`  實作 100x100 矩陣的「加法」與「乘法」運算（C = A + B, C = A × B），並用 `tegrastats` 測量 Jetson Orin 的 CPU、記憶體使用量。
+2. 請使用 `OpenBLAS`  實作 100x100 矩陣的「加法」與「乘法」運算，並測量 Jetson Orin 的 CPU、記憶體使用量。
 
 3. 延續第二題，，請加入 `openblas_set_num_threads(2)`;，分別比較單執行緒與多執行緒的執行時間插一，並觀察 CPU 的使用量。
 
