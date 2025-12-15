@@ -1,11 +1,10 @@
+#include <iostream>
 #include <cudnn.h>
 #include <cuda_runtime.h>
-#include <iostream>
 using namespace std;
 
 int main(){
     cudnnHandle_t handle; cudnnCreate(&handle);
-
     cudnnTensorDescriptor_t xDesc,yDesc;
     cudnnFilterDescriptor_t wDesc;
     cudnnConvolutionDescriptor_t convDesc;
@@ -14,10 +13,13 @@ int main(){
     cudnnCreateFilterDescriptor(&wDesc);
     cudnnCreateConvolutionDescriptor(&convDesc);
 
-    // TODO: 設定輸入張量 (NCHW 格式)
-    // TODO: 設定卷積參數 (padding, stride)
-    // TODO: 計算輸出維度 (cudnnGetConvolution2dForwardOutputDim)
-    // TODO: 呼叫 cudnnConvolutionForward 完成卷積
+    cudnnSetTensor4dDescriptor(xDesc,CUDNN_TENSOR_NCHW,CUDNN_DATA_FLOAT,1,1,32,32);
+    cudnnSetFilter4dDescriptor(wDesc,CUDNN_DATA_FLOAT,CUDNN_TENSOR_NCHW,1,1,3,3);
+    cudnnSetConvolution2dDescriptor(convDesc,1,1,1,1,1,1,CUDNN_CROSS_CORRELATION,CUDNN_DATA_FLOAT);
+
+    int n,c,h,w;
+    cudnnGetConvolution2dForwardOutputDim(convDesc,xDesc,wDesc,&n,&c,&h,&w);
+    cout<<"Output shape: "<<n<<"x"<<c<<"x"<<h<<"x"<<w<<endl;
 
     cudnnDestroyConvolutionDescriptor(convDesc);
     cudnnDestroyFilterDescriptor(wDesc);
