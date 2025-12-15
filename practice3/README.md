@@ -33,6 +33,156 @@ g++ <source_file>.cpp -o <output_binary> \
 
 
 ## 範例解答
+### trt_engine.cpp
+```cpp
+#include <NvInfer.h>
+#include <NvOnnxParser.h>
+#include <cuda_runtime.h>
+#include <iostream>
+using namespace nvinfer1;
+using namespace std;
+
+int main(){
+    IBuilder* builder = createInferBuilder(gLogger);
+    INetworkDefinition* network = builder->createNetworkV2(0U);
+    nvonnxparser::IParser* parser = nvonnxparser::createParser(*network, gLogger);
+
+    if(!parser->parseFromFile("model.onnx", static_cast<int>(ILogger::Severity::kWARNING))){
+        cerr << "Failed to parse ONNX model" << endl;
+        return -1;
+    }
+
+    IBuilderConfig* config = builder->createBuilderConfig();
+    ICudaEngine* engine = builder->buildEngineWithConfig(*network, *config);
+    IExecutionContext* context = engine->createExecutionContext();
+
+    cout << "Engine built successfully (default FP32 on GPU)" << endl;
+
+    context->destroy();
+    engine->destroy();
+    network->destroy();
+    parser->destroy();
+    builder->destroy();
+    config->destroy();
+}
+```
+### trt_dla.cpp
+```cpp
+#include <NvInfer.h>
+#include <NvOnnxParser.h>
+#include <cuda_runtime.h>
+#include <iostream>
+using namespace nvinfer1;
+using namespace std;
+
+int main(){
+    IBuilder* builder = createInferBuilder(gLogger);
+    INetworkDefinition* network = builder->createNetworkV2(0U);
+    nvonnxparser::IParser* parser = nvonnxparser::createParser(*network, gLogger);
+
+    if(!parser->parseFromFile("model.onnx", static_cast<int>(ILogger::Severity::kWARNING))){
+        cerr << "Failed to parse ONNX model" << endl;
+        return -1;
+    }
+
+    IBuilderConfig* config = builder->createBuilderConfig();
+    config->setDefaultDeviceType(DeviceType::kDLA); // 指定 DLA
+    config->setDLACore(0);                          // 使用 DLA core 0
+
+    ICudaEngine* engine = builder->buildEngineWithConfig(*network, *config);
+    IExecutionContext* context = engine->createExecutionContext();
+
+    cout << "Engine built on DLA core 0" << endl;
+
+    context->destroy();
+    engine->destroy();
+    network->destroy();
+    parser->destroy();
+    builder->destroy();
+    config->destroy();
+}
+```
+### trt_fp16.cpp
+```cpp
+#include <NvInfer.h>
+#include <NvOnnxParser.h>
+#include <cuda_runtime.h>
+#include <iostream>
+using namespace nvinfer1;
+using namespace std;
+
+int main(){
+    IBuilder* builder = createInferBuilder(gLogger);
+    INetworkDefinition* network = builder->createNetworkV2(0U);
+    nvonnxparser::IParser* parser = nvonnxparser::createParser(*network, gLogger);
+
+    if(!parser->parseFromFile("model.onnx", static_cast<int>(ILogger::Severity::kWARNING))){
+        cerr << "Failed to parse ONNX model" << endl;
+        return -1;
+    }
+
+    IBuilderConfig* config = builder->createBuilderConfig();
+    config->setFlag(BuilderFlag::kFP16); // 啟用 FP16 精度
+
+    ICudaEngine* engine = builder->buildEngineWithConfig(*network, *config);
+    IExecutionContext* context = engine->createExecutionContext();
+
+    cout << "Engine built with FP16 precision" << endl;
+
+    context->destroy();
+    engine->destroy();
+    network->destroy();
+    parser->destroy();
+    builder->destroy();
+    config->destroy();
+}
+```
+### trt_int8.cpp
+```cpp
+#include <NvInfer.h>
+#include <NvOnnxParser.h>
+#include <cuda_runtime.h>
+#include <iostream>
+using namespace nvinfer1;
+using namespace std;
+
+// 簡單的 Dummy Calibrator
+class DummyCalibrator : public IInt8Calibrator {
+public:
+    int getBatchSize() const noexcept override { return 1; }
+    bool getBatch(void* bindings[], const char* names[], int nbBindings) noexcept override { return false; }
+    const void* readCalibrationCache(size_t& length) noexcept override { length = 0; return nullptr; }
+    void writeCalibrationCache(const void* cache, size_t length) noexcept override {}
+};
+
+int main(){
+    IBuilder* builder = createInferBuilder(gLogger);
+    INetworkDefinition* network = builder->createNetworkV2(0U);
+    nvonnxparser::IParser* parser = nvonnxparser::createParser(*network, gLogger);
+
+    if(!parser->parseFromFile("model.onnx", static_cast<int>(ILogger::Severity::kWARNING))){
+        cerr << "Failed to parse ONNX model" << endl;
+        return -1;
+    }
+
+    IBuilderConfig* config = builder->createBuilderConfig();
+    config->setFlag(BuilderFlag::kINT8);          // 啟用 INT8
+    DummyCalibrator calibrator;
+    config->setInt8Calibrator(&calibrator);       // 提供校正器
+
+    ICudaEngine* engine = builder->buildEngineWithConfig(*network, *config);
+    IExecutionContext* context = engine->createExecutionContext();
+
+    cout << "Engine built with INT8 quantization" << endl;
+
+    context->destroy();
+    engine->destroy();
+    network->destroy();
+    parser->destroy();
+    builder->destroy();
+    config->destroy();
+}
+```
 ### trt_profiler.cpp
 ```cpp
 #include <NvInfer.h>
@@ -79,28 +229,26 @@ int main(){
     MyProfiler profiler;
     context->setProfiler(&profiler);
 
-    // 建立 input/output buffer
+    // 假設模型輸入為 1x3x224x224，輸出為 1x1000
     int inputIndex = engine->getBindingIndex("input");
     int outputIndex = engine->getBindingIndex("output");
-    size_t inputSize = 1 * 3 * 224 * 224 * sizeof(float); // 假設模型輸入為 1x3x224x224
-    size_t outputSize = 1 * 1000 * sizeof(float);         // 假設模型輸出為 1000 類別
+    size_t inputSize = 1 * 3 * 224 * 224 * sizeof(float);
+    size_t outputSize = 1 * 1000 * sizeof(float);
 
     void* d_input; void* d_output;
     cudaMalloc(&d_input, inputSize);
     cudaMalloc(&d_output, outputSize);
 
-    // 建立 bindings
     void* bindings[2];
     bindings[inputIndex] = d_input;
     bindings[outputIndex] = d_output;
 
-    // 執行推論
+    // 執行一次推論
     context->enqueueV2(bindings, 0, nullptr);
 
     // 輸出 profiler 結果
     profiler.print();
 
-    // 清理資源
     cudaFree(d_input);
     cudaFree(d_output);
     context->destroy();
@@ -110,4 +258,6 @@ int main(){
     builder->destroy();
     config->destroy();
 }
+
 ```
+
