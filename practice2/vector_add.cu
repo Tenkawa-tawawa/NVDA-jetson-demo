@@ -1,5 +1,5 @@
-#include <cuda_runtime.h>
 #include <iostream>
+#include <cuda_runtime.h>
 using namespace std;
 
 __global__ void vectorAdd(const float* A, const float* B, float* C, int N) {
