@@ -1,6 +1,6 @@
 # Jetson Orin 程式實作專案 (2)
 
-這個學習資源旨在讓你體驗 **CUDA 平行運算** 在 Jetson Orin 上的開發流程。你將學會如何撰寫 `CUDA kernel`、配置 `threads/blocks`，並觀察 GPU 的效能表現，進一步理解簡報中提到的 **CUDA 加速原理**。
+這個學習資源旨在讓你體驗 **CUDA 平行運算** 在 Jetson Orin 上的開發流程。你將學會如何撰寫 `CUDA kernel`、配置 `threads/blocks`，並觀察 GPU 的效能表現，進一步理解 **CUDA 加速原理**。
 
 ## 準備環境
 
