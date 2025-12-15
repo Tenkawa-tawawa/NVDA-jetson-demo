@@ -1,19 +1,16 @@
-#include <iostream>
 #include <cuda_runtime.h>
+#include <iostream>
 using namespace std;
 
 __global__ void matMul(const float* A,const float* B,float* C,int N){
-    int row=blockIdx.y*blockDim.y+threadIdx.y;
-    int col=blockIdx.x*blockDim.x+threadIdx.x;
-    if(row<N && col<N){
-        float sum=0;
-        for(int k=0;k<N;k++) sum+=A[row*N+k]*B[k*N+col];
-        C[row*N+col]=sum;
-    }
+    // TODO: 計算 row 與 col
+    // TODO: 在迴圈中完成矩陣乘法
 }
 
 int main(){
-    int N=256; size_t size=N*N*sizeof(float);
+    const int N=256;
+    size_t size=N*N*sizeof(float);
+
     float *h_A=new float[N*N],*h_B=new float[N*N],*h_C=new float[N*N];
     for(int i=0;i<N*N;i++){ h_A[i]=1.0f; h_B[i]=2.0f; }
 
@@ -22,9 +19,8 @@ int main(){
     cudaMemcpy(d_A,h_A,size,cudaMemcpyHostToDevice);
     cudaMemcpy(d_B,h_B,size,cudaMemcpyHostToDevice);
 
-    dim3 threadsPerBlock(16,16);
-    dim3 blocksPerGrid((N+15)/16,(N+15)/16);
-    matMul<<<blocksPerGrid,threadsPerBlock>>>(d_A,d_B,d_C,N);
+    // TODO: 設定 dim3 threadsPerBlock 與 blocksPerGrid
+    // TODO: 呼叫 kernel
 
     cudaMemcpy(h_C,d_C,size,cudaMemcpyDeviceToHost);
     cout<<"C[0]="<<h_C[0]<<endl;
