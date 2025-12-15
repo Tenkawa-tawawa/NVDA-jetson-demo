@@ -4,7 +4,11 @@
 using namespace std;
 
 int main(){
-    cudnnHandle_t handle; cudnnCreate(&handle);
+    // 已經寫好：建立 cudnn handle
+    cudnnHandle_t handle; 
+    cudnnCreate(&handle);
+
+    // 已經寫好：建立 descriptor
     cudnnTensorDescriptor_t xDesc,yDesc;
     cudnnFilterDescriptor_t wDesc;
     cudnnConvolutionDescriptor_t convDesc;
@@ -13,14 +17,13 @@ int main(){
     cudnnCreateFilterDescriptor(&wDesc);
     cudnnCreateConvolutionDescriptor(&convDesc);
 
-    cudnnSetTensor4dDescriptor(xDesc,CUDNN_TENSOR_NCHW,CUDNN_DATA_FLOAT,1,1,32,32);
-    cudnnSetFilter4dDescriptor(wDesc,CUDNN_DATA_FLOAT,CUDNN_TENSOR_NCHW,1,1,3,3);
-    cudnnSetConvolution2dDescriptor(convDesc,1,1,1,1,1,1,CUDNN_CROSS_CORRELATION,CUDNN_DATA_FLOAT);
+    // TODO: 設定輸入張量 (例如 NCHW 格式: 1x1x32x32)
+    // TODO: 設定 filter (例如 1x1x3x3)
+    // TODO: 設定卷積參數 (padding, stride)
+    // TODO: 使用 cudnnGetConvolution2dForwardOutputDim 計算輸出維度
+    // TODO: 輸出結果 (例如 cout << "Output shape: ..." )
 
-    int n,c,h,w;
-    cudnnGetConvolution2dForwardOutputDim(convDesc,xDesc,wDesc,&n,&c,&h,&w);
-    cout<<"Output shape: "<<n<<"x"<<c<<"x"<<h<<"x"<<w<<endl;
-
+    // 已經寫好：釋放資源
     cudnnDestroyConvolutionDescriptor(convDesc);
     cudnnDestroyFilterDescriptor(wDesc);
     cudnnDestroyTensorDescriptor(xDesc);
