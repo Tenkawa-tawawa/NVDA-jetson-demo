@@ -14,7 +14,7 @@ nvcc --version
 
 ## 編譯與執行
 
-1. 使用 nvcc 編譯 CUDA 程式：
+1. 使用 `nvcc` 編譯 CUDA 程式：
 
 ```bash
 nvcc vector_add.cu -o vector_add
@@ -24,9 +24,9 @@ nvcc vector_add.cu -o vector_add
 ```bash
 ./vector_add
 ```
-3. 啟動效能監測（可於另一個命令列執行）：
+3. 啟動效能監測（Nsight Systems）：
 ```bash
-sudo tegrastats
+nsys profile ./vector_add
 ```
 
 ## 進階練習題
