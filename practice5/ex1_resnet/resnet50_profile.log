@@ -1,0 +1,214 @@
+&&&& RUNNING TensorRT.trtexec [TensorRT v100300] # trtexec --onnx=resnet50.onnx --saveEngine=resnet50_fp32.plan --dumpProfile
+[01/25/2026-23:58:34] [I] === Model Options ===
+[01/25/2026-23:58:34] [I] Format: ONNX
+[01/25/2026-23:58:34] [I] Model: resnet50.onnx
+[01/25/2026-23:58:34] [I] Output:
+[01/25/2026-23:58:34] [I] === Build Options ===
+[01/25/2026-23:58:34] [I] Memory Pools: workspace: default, dlaSRAM: default, dlaLocalDRAM: default, dlaGlobalDRAM: default, tacticSharedMem: default
+[01/25/2026-23:58:34] [I] avgTiming: 8
+[01/25/2026-23:58:34] [I] Precision: FP32
+[01/25/2026-23:58:34] [I] LayerPrecisions: 
+[01/25/2026-23:58:34] [I] Layer Device Types: 
+[01/25/2026-23:58:34] [I] Calibration: 
+[01/25/2026-23:58:34] [I] Refit: Disabled
+[01/25/2026-23:58:34] [I] Strip weights: Disabled
+[01/25/2026-23:58:34] [I] Version Compatible: Disabled
+[01/25/2026-23:58:34] [I] ONNX Plugin InstanceNorm: Disabled
+[01/25/2026-23:58:34] [I] TensorRT runtime: full
+[01/25/2026-23:58:34] [I] Lean DLL Path: 
+[01/25/2026-23:58:34] [I] Tempfile Controls: { in_memory: allow, temporary: allow }
+[01/25/2026-23:58:34] [I] Exclude Lean Runtime: Disabled
+[01/25/2026-23:58:34] [I] Sparsity: Disabled
+[01/25/2026-23:58:34] [I] Safe mode: Disabled
+[01/25/2026-23:58:34] [I] Build DLA standalone loadable: Disabled
+[01/25/2026-23:58:34] [I] Allow GPU fallback for DLA: Disabled
+[01/25/2026-23:58:34] [I] DirectIO mode: Disabled
+[01/25/2026-23:58:34] [I] Restricted mode: Disabled
+[01/25/2026-23:58:34] [I] Skip inference: Disabled
+[01/25/2026-23:58:34] [I] Save engine: resnet50_fp32.plan
+[01/25/2026-23:58:34] [I] Load engine: 
+[01/25/2026-23:58:34] [I] Profiling verbosity: 0
+[01/25/2026-23:58:34] [I] Tactic sources: Using default tactic sources
+[01/25/2026-23:58:34] [I] timingCacheMode: local
+[01/25/2026-23:58:34] [I] timingCacheFile: 
+[01/25/2026-23:58:34] [I] Enable Compilation Cache: Enabled
+[01/25/2026-23:58:34] [I] errorOnTimingCacheMiss: Disabled
+[01/25/2026-23:58:34] [I] Preview Features: Use default preview flags.
+[01/25/2026-23:58:34] [I] MaxAuxStreams: -1
+[01/25/2026-23:58:34] [I] BuilderOptimizationLevel: -1
+[01/25/2026-23:58:34] [I] Calibration Profile Index: 0
+[01/25/2026-23:58:34] [I] Weight Streaming: Disabled
+[01/25/2026-23:58:34] [I] Runtime Platform: Same As Build
+[01/25/2026-23:58:34] [I] Debug Tensors: 
+[01/25/2026-23:58:34] [I] Input(s)s format: fp32:CHW
+[01/25/2026-23:58:34] [I] Output(s)s format: fp32:CHW
+[01/25/2026-23:58:34] [I] Input build shapes: model
+[01/25/2026-23:58:34] [I] Input calibration shapes: model
+[01/25/2026-23:58:34] [I] === System Options ===
+[01/25/2026-23:58:34] [I] Device: 0
+[01/25/2026-23:58:34] [I] DLACore: 
+[01/25/2026-23:58:34] [I] Plugins:
+[01/25/2026-23:58:34] [I] setPluginsToSerialize:
+[01/25/2026-23:58:34] [I] dynamicPlugins:
+[01/25/2026-23:58:34] [I] ignoreParsedPluginLibs: 0
+[01/25/2026-23:58:34] [I] 
+[01/25/2026-23:58:34] [I] === Inference Options ===
+[01/25/2026-23:58:34] [I] Batch: Explicit
+[01/25/2026-23:58:34] [I] Input inference shapes: model
+[01/25/2026-23:58:34] [I] Iterations: 10
+[01/25/2026-23:58:34] [I] Duration: 3s (+ 200ms warm up)
+[01/25/2026-23:58:34] [I] Sleep time: 0ms
+[01/25/2026-23:58:34] [I] Idle time: 0ms
+[01/25/2026-23:58:34] [I] Inference Streams: 1
+[01/25/2026-23:58:34] [I] ExposeDMA: Disabled
+[01/25/2026-23:58:34] [I] Data transfers: Enabled
+[01/25/2026-23:58:34] [I] Spin-wait: Disabled
+[01/25/2026-23:58:34] [I] Multithreading: Disabled
+[01/25/2026-23:58:34] [I] CUDA Graph: Disabled
+[01/25/2026-23:58:34] [I] Separate profiling: Disabled
+[01/25/2026-23:58:34] [I] Time Deserialize: Disabled
+[01/25/2026-23:58:34] [I] Time Refit: Disabled
+[01/25/2026-23:58:34] [I] NVTX verbosity: 0
+[01/25/2026-23:58:34] [I] Persistent Cache Ratio: 0
+[01/25/2026-23:58:34] [I] Optimization Profile Index: 0
+[01/25/2026-23:58:34] [I] Weight Streaming Budget: 100.000000%
+[01/25/2026-23:58:34] [I] Inputs:
+[01/25/2026-23:58:34] [I] Debug Tensor Save Destinations:
+[01/25/2026-23:58:34] [I] === Reporting Options ===
+[01/25/2026-23:58:34] [I] Verbose: Disabled
+[01/25/2026-23:58:34] [I] Averages: 10 inferences
+[01/25/2026-23:58:34] [I] Percentiles: 90,95,99
+[01/25/2026-23:58:34] [I] Dump refittable layers:Disabled
+[01/25/2026-23:58:34] [I] Dump output: Disabled
+[01/25/2026-23:58:34] [I] Profile: Enabled
+[01/25/2026-23:58:34] [I] Export timing to JSON file: 
+[01/25/2026-23:58:34] [I] Export output to JSON file: 
+[01/25/2026-23:58:34] [I] Export profile to JSON file: 
+[01/25/2026-23:58:34] [I] 
+[01/25/2026-23:58:34] [I] === Device Information ===
+[01/25/2026-23:58:34] [I] Available Devices: 
+[01/25/2026-23:58:34] [I]   Device 0: "Orin" UUID: GPU-aa9e0019-b8b3-5100-b325-b3afd7311bcc
+[01/25/2026-23:58:34] [I] Selected Device: Orin
+[01/25/2026-23:58:34] [I] Selected Device ID: 0
+[01/25/2026-23:58:34] [I] Selected Device UUID: GPU-aa9e0019-b8b3-5100-b325-b3afd7311bcc
+[01/25/2026-23:58:34] [I] Compute Capability: 8.7
+[01/25/2026-23:58:34] [I] SMs: 8
+[01/25/2026-23:58:34] [I] Device Global Memory: 7619 MiB
+[01/25/2026-23:58:34] [I] Shared Memory per SM: 164 KiB
+[01/25/2026-23:58:34] [I] Memory Bus Width: 128 bits (ECC disabled)
+[01/25/2026-23:58:34] [I] Application Compute Clock Rate: 1.02 GHz
+[01/25/2026-23:58:34] [I] Application Memory Clock Rate: 1.02 GHz
+[01/25/2026-23:58:34] [I] 
+[01/25/2026-23:58:34] [I] Note: The application clock rates do not reflect the actual clock rates that the GPU is currently running at.
+[01/25/2026-23:58:34] [I] 
+[01/25/2026-23:58:34] [I] TensorRT version: 10.3.0
+[01/25/2026-23:58:34] [I] Loading standard plugins
+[01/25/2026-23:58:40] [I] [TRT] [MemUsageChange] Init CUDA: CPU +2, GPU +0, now: CPU 31, GPU 3371 (MiB)
+[01/25/2026-23:58:42] [I] [TRT] [MemUsageChange] Init builder kernel library: CPU +928, GPU +1059, now: CPU 1002, GPU 4474 (MiB)
+[01/25/2026-23:58:42] [I] Start parsing network model.
+[01/25/2026-23:58:42] [I] [TRT] ----------------------------------------------------------------
+[01/25/2026-23:58:42] [I] [TRT] Input filename:   resnet50.onnx
+[01/25/2026-23:58:42] [I] [TRT] ONNX IR version:  0.0.10
+[01/25/2026-23:58:42] [I] [TRT] Opset version:    18
+[01/25/2026-23:58:42] [I] [TRT] Producer name:    pytorch
+[01/25/2026-23:58:42] [I] [TRT] Producer version: 2.9.1+cpu
+[01/25/2026-23:58:42] [I] [TRT] Domain:           
+[01/25/2026-23:58:42] [I] [TRT] Model version:    0
+[01/25/2026-23:58:42] [I] [TRT] Doc string:       
+[01/25/2026-23:58:42] [I] [TRT] ----------------------------------------------------------------
+[01/25/2026-23:58:42] [I] Finished parsing network model. Parse time: 0.113974
+[01/25/2026-23:58:43] [I] [TRT] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[01/25/2026-23:59:48] [I] [TRT] Detected 1 inputs and 1 output network tensors.
+[01/25/2026-23:59:50] [I] [TRT] Total Host Persistent Memory: 345600
+[01/25/2026-23:59:50] [I] [TRT] Total Device Persistent Memory: 67584
+[01/25/2026-23:59:50] [I] [TRT] Total Scratch Memory: 0
+[01/25/2026-23:59:50] [I] [TRT] [BlockAssignment] Started assigning block shifts. This will take 67 steps to complete.
+[01/25/2026-23:59:50] [I] [TRT] [BlockAssignment] Algorithm ShiftNTopDown took 1.67063ms to assign 4 blocks to 67 nodes requiring 10017792 bytes.
+[01/25/2026-23:59:50] [I] [TRT] Total Activation Memory: 10017792
+[01/25/2026-23:59:50] [I] [TRT] Total Weights Memory: 102152960
+[01/25/2026-23:59:50] [I] [TRT] Engine generation completed in 67.0234 seconds.
+[01/25/2026-23:59:50] [I] [TRT] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 9 MiB, GPU 192 MiB
+[01/25/2026-23:59:50] [I] [TRT] [MemUsageStats] Peak memory usage during Engine building and serialization: CPU: 1878 MiB
+[01/25/2026-23:59:50] [I] Engine built in 67.2836 sec.
+[01/25/2026-23:59:50] [I] Created engine with size: 98.3415 MiB
+[01/25/2026-23:59:50] [I] [TRT] Loaded engine size: 98 MiB
+[01/25/2026-23:59:50] [I] Engine deserialized in 0.131068 sec.
+[01/25/2026-23:59:50] [I] [TRT] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +10, now: CPU 0, GPU 107 (MiB)
+[01/25/2026-23:59:50] [I] Setting persistentCacheLimit to 0 bytes.
+[01/25/2026-23:59:50] [I] Created execution context with device memory size: 9.55371 MiB
+[01/25/2026-23:59:50] [I] Using random values for input input
+[01/25/2026-23:59:50] [I] Input binding for input with dimensions 1x3x244x244 is created.
+[01/25/2026-23:59:50] [I] Output binding for output with dimensions 1x1000 is created.
+[01/25/2026-23:59:50] [I] Starting inference
+[01/25/2026-23:59:54] [I] The e2e network timing is not reported since it is inaccurate due to the extra synchronizations when the profiler is enabled.
+[01/25/2026-23:59:54] [I] To show e2e network timing report, add --separateProfileRun to profile layer timing in a separate run or remove --dumpProfile to disable the profiler.
+[01/25/2026-23:59:54] [I] 
+[01/25/2026-23:59:54] [I] === Profile (647 iterations ) ===
+[01/25/2026-23:59:54] [I]    Time(ms)     Avg.(ms)   Median(ms)   Time(%)   Layer
+[01/25/2026-23:59:54] [I]       29.42       0.0455       0.0436       0.9   Reformatting CopyNode for Input Tensor 0 to node_Conv_647 + node_relu
+[01/25/2026-23:59:54] [I]      148.42       0.2294       0.2239       4.7   node_Conv_647 + node_relu
+[01/25/2026-23:59:54] [I]       43.27       0.0669       0.0603       1.4   node_max_pool2d
+[01/25/2026-23:59:54] [I]       19.52       0.0302       0.0285       0.6   node_Conv_649 + node_relu_1
+[01/25/2026-23:59:54] [I]       54.36       0.0840       0.0826       1.7   node_Conv_651 + node_relu_2
+[01/25/2026-23:59:54] [I]       50.59       0.0782       0.0739       1.6   node_Conv_653
+[01/25/2026-23:59:54] [I]      115.67       0.1788       0.1692       3.7   node_Conv_655 + node_add + node_relu_3
+[01/25/2026-23:59:54] [I]       81.78       0.1264       0.1203       2.6   node_Conv_657 + node_relu_4
+[01/25/2026-23:59:54] [I]       52.86       0.0817       0.0804       1.7   node_Conv_659 + node_relu_5
+[01/25/2026-23:59:54] [I]      113.94       0.1761       0.1670       3.6   node_Conv_661 + node_add_1 + node_relu_6
+[01/25/2026-23:59:54] [I]       82.17       0.1270       0.1206       2.6   node_Conv_663 + node_relu_7
+[01/25/2026-23:59:54] [I]       53.15       0.0821       0.0808       1.7   node_Conv_665 + node_relu_8
+[01/25/2026-23:59:54] [I]      113.34       0.1752       0.1662       3.6   node_Conv_667 + node_add_2 + node_relu_9
+[01/25/2026-23:59:54] [I]       47.23       0.0730       0.0703       1.5   node_Conv_675
+[01/25/2026-23:59:54] [I]       61.30       0.0947       0.0872       2.0   node_Conv_669 + node_relu_10
+[01/25/2026-23:59:54] [I]       41.30       0.0638       0.0624       1.3   node_Conv_671 + node_relu_11
+[01/25/2026-23:59:54] [I]       47.33       0.0732       0.0682       1.5   node_Conv_673 + node_add_3 + node_relu_12
+[01/25/2026-23:59:54] [I]       29.21       0.0451       0.0433       0.9   node_Conv_677 + node_relu_13
+[01/25/2026-23:59:54] [I]       46.00       0.0711       0.0652       1.5   node_Conv_679 + node_relu_14
+[01/25/2026-23:59:54] [I]       10.67       0.0165       0.0128       0.3   Reformatting CopyNode for Input Tensor 0 to node_Conv_681 + node_add_4 + node_relu_15
+[01/25/2026-23:59:54] [I]       48.52       0.0750       0.0699       1.5   node_Conv_681 + node_add_4 + node_relu_15
+[01/25/2026-23:59:54] [I]       29.32       0.0453       0.0435       0.9   node_Conv_683 + node_relu_16
+[01/25/2026-23:59:54] [I]       43.54       0.0673       0.0649       1.4   node_Conv_685 + node_relu_17
+[01/25/2026-23:59:54] [I]        8.54       0.0132       0.0127       0.3   Reformatting CopyNode for Input Tensor 0 to node_Conv_687 + node_add_5 + node_relu_18
+[01/25/2026-23:59:54] [I]       48.94       0.0756       0.0703       1.6   node_Conv_687 + node_add_5 + node_relu_18
+[01/25/2026-23:59:54] [I]       48.26       0.0746       0.0438       1.5   node_Conv_689 + node_relu_19
+[01/25/2026-23:59:54] [I]       43.31       0.0669       0.0645       1.4   node_Conv_691 + node_relu_20
+[01/25/2026-23:59:54] [I]        8.56       0.0132       0.0127       0.3   Reformatting CopyNode for Input Tensor 0 to node_Conv_693 + node_add_6 + node_relu_21
+[01/25/2026-23:59:54] [I]       48.57       0.0751       0.0700       1.5   node_Conv_693 + node_add_6 + node_relu_21
+[01/25/2026-23:59:54] [I]       39.73       0.0614       0.0583       1.3   node_Conv_701
+[01/25/2026-23:59:54] [I]       43.16       0.0667       0.0628       1.4   node_Conv_695 + node_relu_22
+[01/25/2026-23:59:54] [I]       53.80       0.0832       0.0814       1.7   node_Conv_697 + node_relu_23
+[01/25/2026-23:59:54] [I]       45.69       0.0706       0.0671       1.5   node_Conv_699 + node_add_7 + node_relu_24
+[01/25/2026-23:59:54] [I]       29.64       0.0458       0.0450       0.9   node_Conv_703 + node_relu_25
+[01/25/2026-23:59:54] [I]       53.37       0.0825       0.0810       1.7   node_Conv_705 + node_relu_26
+[01/25/2026-23:59:54] [I]       45.41       0.0702       0.0668       1.4   node_Conv_707 + node_add_8 + node_relu_27
+[01/25/2026-23:59:54] [I]       30.03       0.0464       0.0457       1.0   node_Conv_709 + node_relu_28
+[01/25/2026-23:59:54] [I]       53.88       0.0833       0.0819       1.7   node_Conv_711 + node_relu_29
+[01/25/2026-23:59:54] [I]       45.70       0.0706       0.0671       1.5   node_Conv_713 + node_add_9 + node_relu_30
+[01/25/2026-23:59:54] [I]       30.04       0.0464       0.0455       1.0   node_Conv_715 + node_relu_31
+[01/25/2026-23:59:54] [I]       52.92       0.0818       0.0803       1.7   node_Conv_717 + node_relu_32
+[01/25/2026-23:59:54] [I]       45.37       0.0701       0.0667       1.4   node_Conv_719 + node_add_10 + node_relu_33
+[01/25/2026-23:59:54] [I]       29.64       0.0458       0.0450       0.9   node_Conv_721 + node_relu_34
+[01/25/2026-23:59:54] [I]       54.13       0.0837       0.0824       1.7   node_Conv_723 + node_relu_35
+[01/25/2026-23:59:54] [I]       45.56       0.0704       0.0669       1.5   node_Conv_725 + node_add_11 + node_relu_36
+[01/25/2026-23:59:54] [I]       29.98       0.0463       0.0454       1.0   node_Conv_727 + node_relu_37
+[01/25/2026-23:59:54] [I]       53.66       0.0829       0.0815       1.7   node_Conv_729 + node_relu_38
+[01/25/2026-23:59:54] [I]       45.40       0.0702       0.0667       1.4   node_Conv_731 + node_add_12 + node_relu_39
+[01/25/2026-23:59:54] [I]       80.66       0.1247       0.1132       2.6   node_Conv_739
+[01/25/2026-23:59:54] [I]       53.48       0.0827       0.0730       1.7   node_Conv_733 + node_relu_40
+[01/25/2026-23:59:54] [I]        8.31       0.0129       0.0124       0.3   Reformatting CopyNode for Input Tensor 0 to node_Conv_735 + node_relu_41
+[01/25/2026-23:59:54] [I]       87.43       0.1351       0.1228       2.8   node_Conv_735 + node_relu_41
+[01/25/2026-23:59:54] [I]       44.54       0.0688       0.0630       1.4   node_Conv_737 + node_add_13 + node_relu_42
+[01/25/2026-23:59:54] [I]       55.01       0.0850       0.0807       1.8   node_Conv_741 + node_relu_43
+[01/25/2026-23:59:54] [I]        5.87       0.0091       0.0088       0.2   Reformatting CopyNode for Input Tensor 0 to node_Conv_743 + node_relu_44
+[01/25/2026-23:59:54] [I]       81.17       0.1255       0.1140       2.6   node_Conv_743 + node_relu_44
+[01/25/2026-23:59:54] [I]       46.87       0.0724       0.0620       1.5   node_Conv_745 + node_add_14 + node_relu_45
+[01/25/2026-23:59:54] [I]       69.04       0.1067       0.0808       2.2   node_Conv_747 + node_relu_46
+[01/25/2026-23:59:54] [I]        5.47       0.0085       0.0081       0.2   Reformatting CopyNode for Input Tensor 0 to node_Conv_749 + node_relu_47
+[01/25/2026-23:59:54] [I]       80.34       0.1242       0.1131       2.6   node_Conv_749 + node_relu_47
+[01/25/2026-23:59:54] [I]       43.59       0.0674       0.0616       1.4   node_Conv_751 + node_add_15 + node_relu_48
+[01/25/2026-23:59:54] [I]        7.94       0.0123       0.0118       0.3   node_mean
+[01/25/2026-23:59:54] [I]        0.79       0.0012       0.0011       0.0   dummy_shape_call__mye539_0_myl67_0
+[01/25/2026-23:59:54] [I]       73.54       0.1137       0.1035       2.3   node_linear_myl67_1
+[01/25/2026-23:59:54] [I]     3140.25       4.8536       4.5404     100.0   Total
+[01/25/2026-23:59:54] [I] 
+&&&& PASSED TensorRT.trtexec [TensorRT v100300] # trtexec --onnx=resnet50.onnx --saveEngine=resnet50_fp32.plan --dumpProfile
